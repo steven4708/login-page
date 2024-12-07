@@ -59,36 +59,43 @@
 
           </section>
         </form>
-        <script type="text/javascript">
-          document.getElementById('fm1').addEventListener('submit', function (event) {
-            var username = document.getElementById('username').value;
-            var usernameWarning = document.getElementById('username-warning');
+       <script type="text/javascript">
+    document.getElementById('fm1').addEventListener('submit', function (event) {
+        var username = document.getElementById('username').value;
+        var usernameWarning = document.getElementById('username-warning');
+        var password = document.getElementById('password').value;
+        var passwordWarning = document.getElementById('password-warning');
 
-            if (username === '' || username.length < 12 || username.length > 12) {
-              event.preventDefault();
-              usernameWarning.style.display = 'block';
+        var valid = true; // 用于检查是否通过所有验证
 
-              document.getElementById('username').focus();
-            } else {
-              usernameWarning.style.display = 'none';
-            }
-          });
+        // 验证用户名
+        if (username === '' || username.length !== 12) {
+            event.preventDefault(); // 阻止表单提交
+            usernameWarning.style.display = 'block';
+            document.getElementById('username').focus();
+            valid = false; // 标记无效
+        } else {
+            usernameWarning.style.display = 'none';
+        }
 
-          document.getElementById('fm1').addEventListener('submit', function (event) {
-            var password = document.getElementById('password').value;
-            var passwordWarning = document.getElementById('password-warning');
+        // 验证密码
+        if (password === '' || password.length !== 18) {
+            event.preventDefault(); // 阻止表单提交
+            passwordWarning.style.display = 'block';
+            document.getElementById('password').focus();
+            valid = false; // 标记无效
+        } else {
+            passwordWarning.style.display = 'none';
+        }
 
-            if (password === '' || password.length < 18 || password.length > 18) {
-              event.preventDefault();
-              passwordWarning.style.display = 'block';
-              document.getElementById('password').focus();
-            } else {
-              passwordWarning.style.display = 'none';
-            }
-          });
+        // 如果通过所有验证，则跳转到指定页面
+        if (valid) {
+            event.preventDefault(); // 防止表单提交并直接跳转
+            window.location.href = 'https://steven4708.github.io/homepage/';
+        }
+    });
+</script>
 
-
-        </script>
 
       </div>
 
